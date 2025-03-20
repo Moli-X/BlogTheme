@@ -53,6 +53,11 @@ highlight_shrink: false # true: shrink the code blocks / false: expand the code 
 highlight_height_limit: 330 # unit: px
 code_word_wrap: false
 
+prismjs:
+  enable: true
+  preprocess: false
+  line_number: true
+
 # copy settings
 # copyright: Add the copyright information after copied content (複制的内容后面加上版权信息)
 # copy: enable 复制后弹窗提示版权信息
@@ -349,7 +354,7 @@ valine:
 # waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
 waline:
-  serverURL: # Waline server address url
+  serverURL: waline-zeta-flame.vercel.app # 请将此处替换为实际的Waline服务端地址
   bg: # Waline background
   pageview: false
   meta_css: false # 是否引入 waline-meta.css ,以便显示 meta图标
@@ -1173,7 +1178,7 @@ envelope_comment:
     - 哪怕是有什么想吃的，都可以告诉我哦~
   bottom: 自动书记人偶竭诚为您服务！ #仅支持单行文本
   height: #1024px，信封划出的高度
-  path: #【可选】comments 的路径名称。默认为 comments，生成的页面为 comments/index.html
+  path: web/comments/index.html #【可选】comments 的路径名称。默认为 comments，生成的页面为 comments/index.html
   front_matter: #【可选】comments页面的 front_matter 配置
     title: 留言板
     comments: true
@@ -1346,9 +1351,9 @@ CDN:
     # aplayer_js:
     # meting_js:
     # meting_api:
-    # prismjs_js:
-    # prismjs_lineNumber_js:
-    # prismjs_autoloader:
+    prismjs_js: https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js
+    prismjs_lineNumber_js: https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js
+    prismjs_autoloader: https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js
     # artalk_js:
     # artalk_css:
     # pace_js:

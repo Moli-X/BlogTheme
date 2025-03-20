@@ -76,7 +76,7 @@ div
     input(type="hidden" name="page-type" id="page-type" value=(page.type ? page.type : (is_post() ? "post" : (is_category() ? "categories" : "anzhiyu"))))
 
     //- 评论弹幕
-    if theme.comment_barrage_config.enable && theme.comments.use == 'Twikoo' && page.comments
+    if theme.comment_barrage_config.enable && theme.comments.use == 'Waline' && page.comments
       script(async src=url_for(theme.asset.comment_barrage_js))
 
   != partial("includes/third-party/prismjs", {}, { cache: true })
@@ -114,10 +114,7 @@ div
   != partial("includes/third-party/chat/index", {}, { cache: true })
 
   if theme.aplayerInject && theme.aplayerInject.enable
-    if theme.pjax.enable || theme.aplayerInject.per_page
-      include ./third-party/aplayer.pug
-    else if page.aplayer
-      include ./third-party/aplayer.pug
+    include ./third-party/aplayer.pug
 
   if theme.pjax.enable
     != partial("includes/third-party/pjax", {}, { cache: true })

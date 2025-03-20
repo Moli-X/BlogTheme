@@ -1,0 +1,7 @@
+mixin btn(href, text, color)
+  a.btn(
+    href=href
+    class=color
+    style="padding: 8px 16px; border-radius: 8px; text-decoration: none; border: 2px solid; background-color: var(--anzhiyu-#{color}); color: white; opacity: 0.9; transition: opacity 0.3s;"
+  )
+    span= text

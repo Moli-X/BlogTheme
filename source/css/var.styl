@@ -184,3 +184,63 @@ $tab-to-top-color = #99a9bf
 $tab-to-top-hover-color = $theme-color
 // Tag Plugins - timeline
 $timeline-default-color = $theme-color
+
+// Custom colors for buttons
+:root {
+  --anzhiyu-red: #F47466;
+  --anzhiyu-blue: #425AEF;
+  --anzhiyu-green: #00c4b6;
+  --anzhiyu-orange: #FF7242;
+  --anzhiyu-yellow: #f2b94b;
+}
+
+// 404 page animations
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error-img:hover {
+  transform: scale(1.05);
+  .error-img-hover {
+    opacity: 1;
+  }
+}
+
+.error-top-btn:hover {
+  opacity: 1;
+}

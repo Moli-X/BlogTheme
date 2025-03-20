@@ -1,36 +1,25 @@
+include mixins/btn.pug
+
 - let error_404_top_img = theme.error_404.background || theme.default_top_img
 - let error_404_bg_img = `background-image: url('${url_for(error_404_top_img)}')`
 
-#body-wrap.error
-  include ./header/index.pug
-  .error-box
-    #error-wrap
-      .error-content
-        .error-img(style=error_404_bg_img)
-        .error-info
-          h1.error_title= '404'
-          .error_subtitle= theme.error_404.subtitle
-          a.button--animated(href=config.root)
-            i.anzhiyufont.anzhiyu-icon-rocket
-            = _p('回到主页')
-
-    .aside-list
-      .aside-list-group
-          - let postLimit = theme.aside.card_recent_post.limit === 0 ? site.posts.length : theme.related_post.limit || 6
-          - let sort = theme.aside.card_recent_post.sort === 'updated' ? 'updated' : 'date'
-          - site.posts.sort(sort, -1).limit(postLimit).each(function(article){
-            - let link = article.link || article.path
-            - let title = article.title || _p('no_title')
-            - let no_cover = article.cover === false || !theme.cover.aside_enable ? 'no-cover' : ''
-            - let post_cover = article.cover
-            .aside-list-item(class=no_cover)
-              if post_cover && theme.cover.aside_enable
-                a.thumbnail(href=url_for(link) title=title)
-                  img(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
-              .content
-                a.title(href=url_for(link) title=title)= title
-                if theme.aside.card_recent_post.sort === 'updated'
-                  time(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated)) #[=date(article.updated, config.date_format)]
-                else
-                  time(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date)) #[=date(article.date, config.date_format)]
-          - })
+#body-wrap.error(style="background: linear-gradient(135deg, var(--anzhiyu-blue), var(--anzhiyu-green)); min-height: 100vh; position: relative;")
+  .error-box(style="display: flex; flex-direction: column; height: 100vh; padding: 2rem;")
+    #error-wrap(style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;")
+      h1(style="font-size: 4rem; margin-bottom: 2rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); animation: float 3s ease-in-out infinite, shake 0.5s ease-in-out infinite alternate;") 
+        span(style="display: inline-block; animation: rotate 2s linear infinite;") 😵
+        |  页面走丢了!
+        span(style="display: inline-block; animation: rotate 2s linear infinite reverse;") 😵
+      .error-content(style="display: flex; align-items: center; gap: 2rem; margin: 2rem 0; position: relative;")
+        .error-img(style=`${error_404_bg_img}; width: 300px; height: 300px; background-size: cover; border-radius: 50%; box-shadow: 0 0 20px rgba(255,255,255,0.5); cursor: pointer; transition: transform 0.3s ease;`)
+          .error-img-hover(style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; background: rgba(0,0,0,0.3); opacity: 0; transition: opacity 0.3s ease; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.5rem;") 点击刷新
+      
+      .error-buttons(style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 1rem; position: relative;")
+        +btn(url_for(config.root), _p('回到首页'), 'anzhiyu-blue')
+        +btn(url_for(config.archive_dir), _p('文章总览'), 'anzhiyu-purple')
+        +btn(url_for('about/'), _p('关于本人'), 'anzhiyu-pink')
+        +btn(url_for('music/'), _p('音乐馆'), 'anzhiyu-orange')
+        +btn(url_for('tags/'), _p('标签页'), 'anzhiyu-green')
+        a.error-top-btn(href="#body-wrap" style="position: absolute; right: 1rem; bottom: 1rem; padding: 0.5rem 1rem; background: var(--anzhiyu-red); color: white; border-radius: 0.5rem; text-decoration: none; opacity: 0.7; transition: opacity 0.3s ease;") 
+          i.fas.fa-arrow-up
+          |  返回顶部
